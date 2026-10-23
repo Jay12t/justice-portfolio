@@ -352,3 +352,16 @@ h1{font-size:clamp(3rem,5.2vw,5.6rem)}
 .button,.header-cta,.project-link{isolation:isolate}
 .button-ripple{pointer-events:none;animation-duration:.45s!important}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}.project-card,.skill-card,.button,.header-cta,.project-link{transition:none!important}}
+
+/* Final edge-spacing correction: use almost the full desktop viewport */
+@media(min-width:1101px){
+ .section-wrap{width:calc(100% - 40px)!important;max-width:none!important;margin-left:20px!important;margin-right:20px!important}
+ .site-header{padding-left:20px!important;padding-right:20px!important}
+ .hero{width:calc(100% - 40px)!important;margin-left:20px!important;margin-right:20px!important}
+ .intro-section,.skills-section,.projects-section,.approach-section,.contact-section{padding-left:20px;padding-right:20px}
+}
+@media(min-width:1600px){
+ .section-wrap{width:calc(100% - 64px)!important;margin-left:32px!important;margin-right:32px!important}
+ .site-header{padding-left:32px!important;padding-right:32px!important}
+ .hero{width:calc(100% - 64px)!important;margin-left:32px!important;margin-right:32px!important}
+}
