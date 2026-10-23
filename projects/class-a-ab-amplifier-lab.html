@@ -72,14 +72,14 @@ function updateModel(){
  $("biasLabel").textContent=isAB?"complementary bias":"biased on";
  $("abStage").setAttribute("opacity",isAB?"1":"0");
  $("currentNote").textContent=isAB?"Push-pull devices share opposite half-cycles; small overlap reduces crossover distortion.":"Single-ended device conducts through the full signal cycle, even at idle.";
- const headroom=isAB?.38:.25;
+ const headroom=isAB ? 0.38 : 0.25;
  const vPeak=Math.min(vin*2,vcc*headroom);
  const vrms=vPeak/Math.sqrt(2),pout=vrms*vrms/rl;
  // Idealised illustrative supply-current models, deliberately conservative and topology dependent.
  const idleCurrent=isAB?.012:.06;
  const pIdle=vcc*idleCurrent;
  const pSignal=isAB?(2*vcc*vPeak/(Math.PI*rl)):(vcc*vPeak/(2*rl));
- const pdc=Math.max(pout+pIdle,isAB?pSignal+pIdle:vcc*idleCurrent+pout*2.4);
+ const pdc=isAB?Math.max(pout/0.785,pSignal+pIdle):Math.max(pout/0.25,vcc*idleCurrent);
  const eff=pdc>0?Math.min(100,pout/pdc*100):0;
  $("pout").textContent=fmt(pout,"W");$("pin").textContent=fmt(pdc,"W");$("eff").textContent=fmt(eff,"%");$("vout").textContent=fmt(vrms,"V RMS");
  $("modelNote").textContent=isAB?"Illustrative Class AB estimate: complementary push-pull stage with small quiescent bias. The model assumes an ideal sinusoidal load voltage limited to 38% of the supply as a headroom allowance; DC current is approximated, not measured.":"Illustrative Class A estimate: single-ended stage with continuous quiescent current. The model assumes an ideal sinusoidal load voltage limited to 25% of the supply; DC current is approximated, not measured.";
