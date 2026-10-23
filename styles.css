@@ -12,3 +12,45 @@
 @media(max-width:900px){.site-header{gap:14px}.site-nav{gap:16px}.hero{gap:35px;padding-top:65px}.hero-visual{min-height:390px}.skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.intro-grid,.approach-grid{gap:35px}.contact-panel{align-items:flex-start;flex-direction:column}.contact-actions{flex-direction:row}}
 @media(max-width:650px){.section-wrap{width:min(calc(100% - 32px),var(--max))}.site-header{position:relative;flex-wrap:wrap;justify-content:space-between;padding:13px 16px}.site-nav{order:3;width:100%;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--line);font-size:.77rem}.header-cta{font-size:.73rem;padding:8px 10px}.hero{grid-template-columns:1fr;gap:36px;padding-top:54px;padding-bottom:60px;min-height:0}.hero-visual{min-height:350px}.hero-lede{font-size:.94rem}.hero-footnote{gap:8px;margin-top:30px}.intro-section,.skills-section,.projects-section,.approach-section{padding-top:48px;padding-bottom:54px}.section-kicker{margin-bottom:25px}.intro-grid,.approach-grid{grid-template-columns:1fr;gap:22px}.section-heading{display:block}.section-heading>p{margin-top:15px}.skills-grid{grid-template-columns:1fr 1fr;gap:10px}.skill-card{padding:16px;min-height:0}.skill-card p{min-height:0}.skill-icon{margin:17px 0 12px}.projects-grid{grid-template-columns:1fr;gap:14px}.project-art{min-height:180px}.project-count{display:inline-block;margin-top:17px}.contact-section{padding-bottom:50px}.contact-actions{width:100%;flex-direction:column}.contact-actions .button{width:100%}.site-footer{flex-wrap:wrap;gap:10px}.site-footer p{order:3;flex-basis:100%}.footer-year{margin-left:auto}}
 @media(max-width:380px){.skills-grid{grid-template-columns:1fr}.hero-actions .button{width:100%}.brand{font-size:.8rem}}
+
+/* Motion layer: subtle, purposeful engineering-interface animation */
+:root{--pointer-x:50vw;--pointer-y:35vh}
+body{background-image:radial-gradient(520px circle at var(--pointer-x) var(--pointer-y),rgba(53,149,150,.075),transparent 70%)}
+.scroll-progress{position:fixed;z-index:100;inset:0 0 auto;height:3px;background:rgba(255,255,255,.035);pointer-events:none}
+.scroll-progress span{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--accent),var(--blue));box-shadow:0 0 12px rgba(141,224,192,.6)}
+.hero-visual{isolation:isolate;box-shadow:inset 0 0 80px rgba(64,157,166,.035)}
+.hero-visual::before{content:"";position:absolute;z-index:1;inset:-30% -10%;pointer-events:none;background:linear-gradient(transparent 44%,rgba(141,224,192,.075) 50%,transparent 56%);transform:translateY(-70%);animation:scanSweep 7s ease-in-out infinite}
+.visual-grid{animation:gridDrift 24s linear infinite}
+.chip{animation:chipFloat 6s ease-in-out infinite;will-change:transform}
+.chip::after{content:"SYSTEM READY";position:absolute;right:16px;top:16px;padding:4px 7px;border:1px solid rgba(141,224,192,.22);border-radius:5px;color:var(--accent);background:rgba(141,224,192,.06);font:500 .55rem "DM Mono",monospace;letter-spacing:.1em}
+.chip-caption{display:flex;align-items:center;gap:7px}
+.chip-caption::after{content:"";width:6px;height:11px;background:var(--accent);animation:cursorBlink 1s steps(2,end) infinite}
+.circuit{animation:circuitGlow 4s ease-in-out infinite alternate}
+.circuit-b{animation-delay:1s}.circuit-c{animation-delay:2s}
+.visual-tag{box-shadow:0 0 0 0 rgba(141,224,192,.18);animation:tagPulse 4s ease-out infinite}
+.tag-bottom{animation-delay:1.8s}
+.telemetry{position:absolute;z-index:3;left:8%;bottom:8%;padding:10px 12px;border:1px solid rgba(141,224,192,.18);border-radius:8px;background:rgba(9,20,32,.82);color:var(--accent);font-size:.56rem;line-height:1.9;backdrop-filter:blur(8px)}
+.telemetry-pulse{display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(141,224,192,.8);animation:cursorBlink 1.3s steps(2,end) infinite}
+.telemetry-dim{color:#8199aa}
+.skill-card,.project-card{transform-style:preserve-3d;will-change:transform}
+.skill-card:hover .skill-icon{transform:translateY(-2px) rotate(-5deg);box-shadow:0 0 24px rgba(141,224,192,.09)}
+.skill-icon{transition:transform .3s,box-shadow .3s}
+.project-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,rgba(141,224,192,.08) 48%,transparent 70%);transform:translateX(-120%);transition:transform .75s ease}
+.project-card:hover .project-art::after{transform:translateX(120%)}
+.project-card:hover .formula{ text-shadow:0 0 24px rgba(141,224,192,.35)}
+.status-dot{animation:statusPulse 2.2s ease-in-out infinite}
+.site-nav a{position:relative}
+.site-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:var(--accent);transition:right .22s ease}
+.site-nav a:hover::after,.site-nav a.is-active::after{right:0}
+.button-primary{box-shadow:0 0 0 0 rgba(141,224,192,.18)}
+.button-primary:hover{box-shadow:0 7px 28px rgba(141,224,192,.12)}
+.reveal{transition-delay:var(--reveal-delay,0ms)}
+@keyframes scanSweep{0%,20%{transform:translateY(-70%)}70%,100%{transform:translateY(70%)}}
+@keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:32px 32px,32px 32px}}
+@keyframes chipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes cursorBlink{0%,48%{opacity:1}49%,100%{opacity:.2}}
+@keyframes circuitGlow{from{opacity:.4;filter:drop-shadow(0 0 0 rgba(131,186,255,0))}to{opacity:1;filter:drop-shadow(0 0 6px rgba(131,186,255,.24))}}
+@keyframes tagPulse{0%,100%{box-shadow:0 0 0 0 rgba(141,224,192,0)}50%{box-shadow:0 0 0 5px rgba(141,224,192,.025)}}
+@keyframes statusPulse{0%,100%{box-shadow:0 0 8px rgba(141,224,192,.3)}50%{box-shadow:0 0 18px rgba(141,224,192,.85)}}
+@media(max-width:650px){.telemetry{left:5%;bottom:5%;font-size:.5rem}.chip{animation:none}.hero-visual::before{animation-duration:10s}}
+@media(prefers-reduced-motion:reduce){body{background-image:none}.visual-grid,.chip,.hero-visual::before,.circuit,.visual-tag,.telemetry-pulse,.status-dot{animation:none!important}.project-art::after{display:none}.skill-card,.project-card{will-change:auto}.scroll-progress{display:none}}
