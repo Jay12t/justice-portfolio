@@ -365,3 +365,24 @@ h1{font-size:clamp(3rem,5.2vw,5.6rem)}
  .site-header{padding-left:32px!important;padding-right:32px!important}
  .hero{width:calc(100% - 64px)!important;margin-left:32px!important;margin-right:32px!important}
 }
+
+/* Minimal header contact control: compact, borderless, no outer ring */
+.site-header .contact-dropdown .header-cta.contact-trigger{
+ width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+ max-width:42px!important;max-height:42px!important;padding:4px!important;
+ border:0!important;outline:0!important;border-radius:50%!important;
+ background:transparent!important;box-shadow:none!important;
+ gap:1px!important;overflow:hidden!important;
+}
+.site-header .contact-dropdown .header-cta.contact-trigger .cta-label{
+ max-width:40px!important;font-size:.43rem!important;line-height:1!important;
+}
+.site-header .contact-dropdown .header-cta.contact-trigger .cta-arrow{font-size:.62rem!important}
+.site-header .contact-dropdown .header-cta.contact-trigger .liquid-orb{width:8px!important;height:8px!important}
+.site-header .contact-dropdown .header-cta.contact-trigger:hover,
+.site-header .contact-dropdown .header-cta.contact-trigger:focus-visible,
+.site-header .contact-dropdown.is-open .header-cta.contact-trigger{
+ border:0!important;outline-offset:3px;box-shadow:none!important;transform:none!important;
+}
+@media(max-width:900px){.site-header .contact-dropdown .header-cta.contact-trigger{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;max-width:40px!important;max-height:40px!important}}
+@media(max-width:650px){.site-header .contact-dropdown .header-cta.contact-trigger{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;max-width:38px!important;max-height:38px!important}}
