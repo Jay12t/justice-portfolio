@@ -97,3 +97,58 @@ document.querySelectorAll(".button, .header-cta, .project-link").forEach((button
     ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
   });
 });
+
+
+// Contact dropdown: support touch/click as well as hover and keyboard.
+const contactDropdown = document.querySelector(".contact-dropdown");
+const contactTrigger = document.querySelector(".contact-trigger");
+if (contactDropdown && contactTrigger) {
+  const closeContactMenu = () => {
+    contactDropdown.classList.remove("is-open");
+    contactTrigger.setAttribute("aria-expanded", "false");
+  };
+  contactTrigger.addEventListener("pointermove", (event) => {
+    const rect = contactTrigger.getBoundingClientRect();
+    contactTrigger.style.setProperty("--liquid-x", `${event.clientX - rect.left}px`);
+    contactTrigger.style.setProperty("--liquid-y", `${event.clientY - rect.top}px`);
+  });
+  contactTrigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    const open = !contactDropdown.classList.contains("is-open");
+    contactDropdown.classList.toggle("is-open", open);
+    contactTrigger.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("click", (event) => {
+    if (!contactDropdown.contains(event.target)) closeContactMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeContactMenu();
+      contactTrigger.focus();
+    }
+  });
+  contactDropdown.querySelectorAll(".contact-menu-item").forEach((link) => {
+    link.addEventListener("click", closeContactMenu);
+  });
+}
+
+// Give each navigation label a subtle letter-scatter micro-interaction on activation.
+document.querySelectorAll(".site-nav a").forEach((link) => {
+  if (!link.dataset.originalLabel) link.dataset.originalLabel = link.textContent.trim();
+  const label = link.dataset.originalLabel;
+  link.textContent = "";
+  [...label].forEach((character, index) => {
+    const letter = document.createElement("span");
+    letter.className = "nav-letter";
+    letter.textContent = character === " " ? "\u00a0" : character;
+    letter.style.setProperty("--scatter-rotate", `${index % 2 ? 7 : -7}deg`);
+    letter.style.animationDelay = `${index * 12}ms`;
+    link.appendChild(letter);
+  });
+  link.addEventListener("click", () => {
+    link.classList.remove("nav-scattering");
+    void link.offsetWidth;
+    link.classList.add("nav-scattering");
+    window.setTimeout(() => link.classList.remove("nav-scattering"), 520);
+  });
+});
