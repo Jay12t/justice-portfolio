@@ -40,27 +40,7 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 updateScrollProgress();
 
-// A soft pointer glow and restrained card tilt are enabled only on fine pointers.
-const finePointer = window.matchMedia("(pointer: fine)").matches;
-if (finePointer && !reduceMotion) {
-  window.addEventListener("pointermove", (event) => {
-    document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
-    document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
-  }, { passive: true });
-
-  document.querySelectorAll(".project-card, .skill-card").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${-y * 2.5}deg) rotateY(${x * 2.5}deg) translateY(-3px)`;
-    });
-    card.addEventListener("pointerleave", () => {
-      card.style.transform = "";
-    });
-  });
-}
-
+// Keep hover feedback stable: avoid pointer-following transforms that can jitter on cards.
 // Mark the section currently being viewed in the navigation.
 const navLinks = [...document.querySelectorAll(".site-nav a")];
 const observedSections = navLinks
@@ -132,23 +112,4 @@ if (contactDropdown && contactTrigger) {
   });
 }
 
-// Give each navigation label a subtle letter-scatter micro-interaction on activation.
-document.querySelectorAll(".site-nav a").forEach((link) => {
-  if (!link.dataset.originalLabel) link.dataset.originalLabel = link.textContent.trim();
-  const label = link.dataset.originalLabel;
-  link.textContent = "";
-  [...label].forEach((character, index) => {
-    const letter = document.createElement("span");
-    letter.className = "nav-letter";
-    letter.textContent = character === " " ? "\u00a0" : character;
-    letter.style.setProperty("--scatter-rotate", `${index % 2 ? 7 : -7}deg`);
-    letter.style.animationDelay = `${index * 12}ms`;
-    link.appendChild(letter);
-  });
-  link.addEventListener("click", () => {
-    link.classList.remove("nav-scattering");
-    void link.offsetWidth;
-    link.classList.add("nav-scattering");
-    window.setTimeout(() => link.classList.remove("nav-scattering"), 520);
-  });
-});
+// Keep navigation labels as normal text for stable rendering and accessible focus.
