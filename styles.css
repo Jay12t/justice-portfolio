@@ -265,3 +265,40 @@ h1 span,h2 span{color:var(--blue)}
 .site-header .contact-dropdown .header-cta.contact-trigger .cta-label{display:block!important;max-width:68px!important;white-space:normal!important;text-align:center!important;line-height:1.05!important;font-size:.72rem!important}
 @media(max-width:900px){.site-header .contact-dropdown .header-cta.contact-trigger{width:82px!important;height:82px!important;min-width:82px!important;min-height:82px!important;max-width:82px!important;max-height:82px!important}}
 @media(max-width:650px){.site-header .contact-dropdown .header-cta.contact-trigger{width:72px!important;height:72px!important;min-width:72px!important;min-height:72px!important;max-width:72px!important;max-height:72px!important}.site-header .contact-dropdown .header-cta.contact-trigger .cta-label{font-size:.64rem!important}}
+
+/* Refined engineering identity and compact circular header contact control */
+.brand{gap:10px;align-items:center;min-width:0;text-decoration:none}
+.brand-mark{width:32px;height:32px;min-width:32px;border-radius:9px;font-family:"DM Mono",monospace;font-size:1rem;line-height:1}
+.brand-copy{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0}
+.brand-name{font-family:"Manrope",Arial,sans-serif!important;font-size:.91rem!important;font-weight:800!important;letter-spacing:-.035em!important;line-height:1.15;white-space:nowrap;color:var(--text)}
+.brand-name em{font-style:normal}
+.brand-role{font-family:"DM Mono",monospace;font-size:.56rem;line-height:1.25;letter-spacing:.035em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.site-header{gap:clamp(12px,2vw,24px);padding-top:11px;padding-bottom:11px}
+.site-nav{gap:clamp(12px,2vw,24px);flex-shrink:0}
+.site-header .contact-dropdown .header-cta.contact-trigger{width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important;max-width:58px!important;max-height:58px!important;padding:5px!important;gap:2px!important;border-radius:50%!important;box-shadow:0 3px 0 #050706,0 6px 15px rgba(0,0,0,.25)!important}
+.site-header .contact-dropdown .header-cta.contact-trigger .cta-label{max-width:48px!important;font-size:.52rem!important;line-height:1.05!important;letter-spacing:-.02em!important}
+.site-header .contact-dropdown .header-cta.contact-trigger .cta-arrow{font-size:.7rem!important}
+.site-header .contact-dropdown .header-cta.contact-trigger .liquid-orb{width:10px;height:10px}
+.site-header .contact-dropdown .header-cta.contact-trigger:hover .liquid-orb,.site-header .contact-dropdown .header-cta.contact-trigger:focus-visible .liquid-orb,.site-header .contact-dropdown.is-open .header-cta.contact-trigger .liquid-orb{transform:translate(-50%,-50%) scale(7)!important}
+@media(max-width:900px){
+ .brand-role{font-size:.49rem;letter-spacing:0}
+ .brand-name{font-size:.84rem!important}
+ .site-header{gap:10px}
+ .site-nav{gap:12px}
+ .site-header .contact-dropdown .header-cta.contact-trigger{width:54px!important;height:54px!important;min-width:54px!important;min-height:54px!important;max-width:54px!important;max-height:54px!important}
+}
+@media(max-width:650px){
+ .site-header{padding:12px 16px;gap:10px}
+ .brand{gap:8px}
+ .brand-mark{width:29px;height:29px;min-width:29px;font-size:.9rem}
+ .brand-name{font-size:.8rem!important}
+ .brand-role{font-size:.43rem;letter-spacing:-.02em}
+ .site-header .contact-dropdown .header-cta.contact-trigger{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important;max-width:50px!important;max-height:50px!important}
+ .site-header .contact-dropdown .header-cta.contact-trigger .cta-label{font-size:.46rem!important}
+}
+@media(max-width:390px){
+ .brand-role{max-width:175px;white-space:normal}
+ .brand-name{font-size:.76rem!important}
+ .site-header .contact-dropdown .header-cta.contact-trigger{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;max-height:46px!important}
+ .site-header .contact-dropdown .header-cta.contact-trigger .cta-label{font-size:.42rem!important}
+}
