@@ -79,10 +79,7 @@ function updateModel(){
  const vcc=Math.min(48,Math.max(3,Number(supply.value)||12)),vin=Math.min(2,Math.max(.1,Number(inputLevel.value)||1)),rl=Math.max(1,Number(load.value)||8);
  $("inputReadout").textContent=vin.toFixed(1);$("loadLabel").textContent=rl+" Ω";$("supplyLabel").textContent="+"+vcc+" V DC";
  const isAB=mode.value==="AB"; $("classASchematic").setAttribute("opacity",isAB?"0":"1"); $("abStage").setAttribute("opacity",isAB?"1":"0");
- $("stageLabel").textContent=isAB?"Class AB stage":"Class A stage";
- $("biasLabel").textContent=isAB?"complementary bias":"biased on";
- $("abStage").setAttribute("opacity",isAB?"1":"0");
- $("currentNote").textContent=isAB?"Push-pull devices share opposite half-cycles; small overlap reduces crossover distortion.":"Single-ended device conducts through the full signal cycle, even at idle."; if($("supplyLabel")) $("supplyLabel").textContent=isAB?"±"+vcc+" V rails":"+"+vcc+" V DC"; if($("supplyLabelA")) $("supplyLabelA").textContent="+"+vcc+" V"; if($("loadLabelA")) $("loadLabelA").textContent=rl+" Ω";
+ $("abStage").setAttribute("opacity",isAB?"1":"0"); if($("supplyLabel")) $("supplyLabel").textContent=isAB?"±"+vcc+" V rails":"+"+vcc+" V DC"; if($("supplyLabelA")) $("supplyLabelA").textContent="+"+vcc+" V"; if($("loadLabelA")) $("loadLabelA").textContent=rl+" Ω";
  const headroom=isAB ? 0.38 : 0.25;
  const vPeak=Math.min(vin*2,vcc*headroom);
  const vrms=vPeak/Math.sqrt(2),pout=vrms*vrms/rl;
@@ -97,7 +94,7 @@ function updateModel(){
  $("waveNote").textContent=isAB?"Push-pull output: the two devices alternately source and sink current; idealised sine wave shown.":"Class A output: one device conducts through the whole cycle; idealised sine wave shown.";
  $("outputWire").classList.toggle("orange",!isAB);
 }
-function render(t){if(!paused){phase+=.035;const amp=12+Number(inputLevel.value)*13;$("inputWave").setAttribute("d",wavePath(amp,70));$("outputWave").setAttribute("d",wavePath(Math.min(48,Number(supply.value)*.38)*1.6,70,true));const d=phase%(Math.PI*4)/(Math.PI*4);$("flowDot").setAttribute("cx",String(427+d*73));$("flowDot").setAttribute("cy",String(90+d*66));}raf=requestAnimationFrame(render)}
+function render(t){if(!paused){phase+=.035;const amp=12+Number(inputLevel.value)*13;$("inputWave").setAttribute("d",wavePath(amp,70));$("outputWave").setAttribute("d",wavePath(Math.min(48,Number(supply.value)*.38)*1.6,70,true));const d=phase%(Math.PI*4)/(Math.PI*4);const dot=$(mode.value==="AB"?"flowDot":"flowDotA");if(dot){dot.setAttribute("cx",String(mode.value==="AB"?560+d*100:350+d*130));dot.setAttribute("cy",String(mode.value==="AB"?235:174));}}raf=requestAnimationFrame(render)}
 [mode,supply,inputLevel,load].forEach(el=>el.addEventListener("input",updateModel));
 $("run").addEventListener("click",()=>{paused=!paused;$("run").textContent=paused?"Resume animation":"Pause animation";$("status").textContent=paused?"Animation paused · values still adjustable":"Signal running · conceptual model"});
 $("reset").addEventListener("click",()=>{mode.value="A";supply.value="12";inputLevel.value="1";load.value="8";paused=false;$("run").textContent="Pause animation";$("status").textContent="Signal running · conceptual model";updateModel()});
