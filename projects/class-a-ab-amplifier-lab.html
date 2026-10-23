@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interactive educational Class A and Class AB power amplifier lab with animated current flow, signal waveforms, and idealised efficiency estimates.">
+<meta name="theme-color" content="#080b0a">
+<title>Class A & AB Amplifier Lab | Justice Oti-yeboah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#080b0a;--panel:#111613;--text:#f5f4ef;--muted:#a9b2aa;--line:rgba(232,241,231,.13);--orange:#ff963d;--green:#83dfa0;--red:#ff7168;--blue:#9ec8ff}*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px 16px 60px;background:radial-gradient(ellipse at 80% 0%,rgba(255,150,61,.085),transparent 40%),radial-gradient(ellipse at 0% 35%,rgba(131,223,160,.04),transparent 38%),var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;line-height:1.6}.wrap{width:min(100%,1060px);margin:0 auto}.back{color:var(--green);font-size:.85rem;font-weight:800;text-decoration:none}.eyebrow{margin:30px 0 8px;color:var(--orange);font:.72rem 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}h1{margin:0;font-size:clamp(2rem,6vw,3.8rem);letter-spacing:-.06em;line-height:1.08}h1 span,h2 span{color:var(--green)}h2{font-size:1.25rem;letter-spacing:-.03em}.lead{max-width:760px;color:var(--muted)}.panel{margin-top:20px;padding:clamp(16px,3vw,26px);border:1px solid var(--line);border-radius:19px;background:rgba(17,22,19,.91);box-shadow:0 18px 48px rgba(0,0,0,.15)}.controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field label{display:block;color:var(--muted);font-size:.8rem;font-weight:700}.field select,.field input{width:100%;margin-top:6px;padding:11px;border:1px solid var(--line);border-radius:9px;background:#0b100d;color:var(--text)}input[type=range]{padding:0;accent-color:var(--orange)}button,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--orange);outline-offset:3px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}button{padding:11px 16px;border:1px solid transparent;border-radius:999px;background:linear-gradient(#ffb875,var(--orange));color:#17100a;font-weight:800;cursor:pointer}button.secondary{border-color:var(--line);background:#171c18;color:var(--text)}.status{display:inline-flex;align-items:center;gap:8px;color:var(--green);font:.72rem 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em}.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px #83dfa077}.diagram{width:100%;display:block;min-height:240px;border:1px solid rgba(131,223,160,.12);border-radius:14px;background:radial-gradient(ellipse at center,rgba(131,223,160,.035),transparent 70%),#0a0f0c}.wire{fill:none;stroke:#6f8173;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.wire.active{stroke:var(--green);stroke-dasharray:8 9;animation:currentFlow .8s linear infinite;filter:drop-shadow(0 0 4px rgba(131,223,160,.45))}.wire.orange{stroke:var(--orange)}.part{fill:#141d16;stroke:#a8b7a9;stroke-width:2}.part-text{fill:var(--text);font:12px 'DM Mono',monospace}.small-text{fill:var(--muted);font:10px 'DM Mono',monospace}.flow-dot{fill:var(--green);filter:drop-shadow(0 0 5px #83dfa0)}.signal-grid{stroke:rgba(232,241,231,.1);stroke-width:1}.signal{fill:none;stroke:var(--orange);stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}.signal.output{stroke:var(--green)}.plots{display:grid;grid-template-columns:1fr 1fr;gap:14px}.plot{padding:12px;border:1px solid var(--line);border-radius:13px}.plot h3{margin:0 0 6px;font-size:.9rem}.plot svg{width:100%;display:block}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}.stat{padding:13px;border:1px solid rgba(255,150,61,.2);border-radius:12px;background:rgba(255,150,61,.035)}.stat p{margin:0;color:var(--muted);font-size:.74rem}.stat strong{display:block;margin-top:5px;color:var(--orange);font:1.15rem 'DM Mono',monospace;overflow-wrap:anywhere}.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.note{padding:15px;border:1px solid var(--line);border-radius:13px}.note h3{margin:0 0 6px;color:var(--green);font-size:.98rem}.note p,.note li{font-size:.83rem;color:var(--muted)}.note ul{padding-left:19px;margin-bottom:0}.warning{border-left:3px solid var(--orange);padding:10px 13px;background:rgba(255,150,61,.055);color:var(--muted);font-size:.8rem}.legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.75rem;margin:12px 0}.legend span{display:inline-flex;align-items:center;gap:6px}.swatch{width:9px;height:9px;border-radius:50%;display:inline-block}.footer{color:var(--muted);font-size:.75rem;margin-top:20px}@keyframes currentFlow{to{stroke-dashoffset:-34}}@media(max-width:740px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.controls,.plots,.notes{grid-template-columns:1fr}.diagram{min-height:200px}.panel{padding:15px}}
+</style></head>
+<body><main class="wrap">
+<a class="back" href="../index.html#projects">← Back to engineering lab</a>
+<p class="eyebrow">Interactive electronics / Power amplifiers</p>
+<h1>Class A & <span>Class AB Amplifier Lab</span></h1>
+<p class="lead">Switch between simplified Class A and complementary Class AB push-pull operation. Watch the conceptual current paths, compare input and output waveforms, and explore how bias and load affect a first-pass efficiency estimate.</p>
+<section class="panel">
+<div class="controls">
+<div class="field"><label for="classMode">Amplifier class</label><select id="classMode"><option value="A">Class A · single-ended</option><option value="AB">Class AB · push-pull</option></select></div>
+<div class="field"><label for="supply">Supply voltage (V)</label><input id="supply" type="number" min="3" max="48" step="1" value="12"></div>
+<div class="field"><label for="inputLevel">Input amplitude (V peak)</label><input id="inputLevel" type="range" min="0.1" max="2" step="0.1" value="1"><div class="small-text"><span id="inputReadout">1.0</span> V peak</div></div>
+<div class="field"><label for="load">Load resistance (Ω)</label><select id="load"><option value="4">4 Ω</option><option value="8" selected>8 Ω</option><option value="16">16 Ω</option></select></div>
+</div>
+<div class="actions"><button id="run" type="button">Pause animation</button><button id="reset" class="secondary" type="button">Reset values</button></div>
+<p class="status" id="status">Signal running · conceptual model</p>
+<div class="legend"><span><i class="swatch" style="background:var(--orange)"></i> Input / positive rail</span><span><i class="swatch" style="background:var(--green)"></i> Output / conventional current path</span><span><i class="swatch" style="background:var(--red)"></i> Complementary device</span></div>
+<h2>Current path & simplified circuit</h2>
+<svg class="diagram" viewBox="0 0 760 320" role="img" aria-label="Conceptual amplifier circuit with supply, input, output stage, load and animated conventional current paths">
+<defs><marker id="arrowGreen" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#83dfa0"/></marker><marker id="arrowOrange" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#ff963d"/></marker></defs>
+<path class="wire orange" d="M65 90H160" marker-end="url(#arrowOrange)"/><rect class="part" x="160" y="68" width="95" height="44" rx="7"/><text class="part-text" x="207" y="86" text-anchor="middle">INPUT</text><text class="small-text" x="207" y="101" text-anchor="middle">signal source</text>
+<path class="wire" d="M255 90H302"/><rect class="part" x="302" y="63" width="125" height="54" rx="8"/><text class="part-text" x="364" y="85" text-anchor="middle" id="stageLabel">Class A stage</text><text class="small-text" x="364" y="101" text-anchor="middle" id="biasLabel">biased on</text>
+<path class="wire active" id="inputWire" d="M65 90H160M255 90H302"/><text class="small-text" x="65" y="71">INPUT</text>
+<path class="wire" d="M427 90H500V156H552" marker-end="url(#arrowGreen)"/><path class="wire active" id="outputWire" d="M427 90H500V156H552"/>
+<rect class="part" x="552" y="130" width="100" height="52" rx="7"/><text class="part-text" x="602" y="151" text-anchor="middle">LOAD</text><text class="small-text" x="602" y="167" text-anchor="middle" id="loadLabel">8 Ω</text>
+<path class="wire" d="M602 182V240H364V117"/><path class="wire active" id="returnWire" d="M602 182V240H364V117"/>
+<rect class="part" x="320" y="250" width="88" height="38" rx="7"/><text class="part-text" x="364" y="273" text-anchor="middle" id="supplyLabel">+12 V DC</text>
+<path class="wire" d="M364 250V240"/><text class="small-text" x="65" y="136" id="currentNote">Single-ended stage: current flows through the active device and load.</text>
+<g id="abStage" opacity="0"><rect class="part" x="305" y="133" width="118" height="32" rx="6"/><text class="part-text" x="364" y="153" text-anchor="middle">NPN / upper</text><rect class="part" x="305" y="178" width="118" height="32" rx="6"/><text class="part-text" x="364" y="198" text-anchor="middle">PNP / lower</text><path class="wire active" d="M364 133V117M364 210V240"/></g>
+<circle class="flow-dot" id="flowDot" cx="470" cy="90" r="5"/>
+<text class="small-text" x="65" y="292">Conceptual signal/current path — not a build-ready schematic.</text>
+</svg>
+</section>
+<section class="panel"><h2>Input vs output signal</h2><div class="plots">
+<div class="plot"><h3>Input signal · small-signal AC</h3><svg viewBox="0 0 420 140" role="img" aria-label="Animated sinusoidal input waveform"><path class="signal-grid" d="M10 20H410M10 70H410M10 120H410M10 20V120M110 20V120M210 20V120M310 20V120M410 20V120"/><path id="inputWave" class="signal" d=""/></svg><p class="small-text">Input amplitude is adjusted above.</p></div>
+<div class="plot"><h3>Output across load</h3><svg viewBox="0 0 420 140" role="img" aria-label="Output waveform from the selected amplifier class"><path class="signal-grid" d="M10 20H410M10 70H410M10 120H410M10 20V120M110 20V120M210 20V120M310 20V120M410 20V120"/><path id="outputWave" class="signal output" d=""/></svg><p class="small-text" id="waveNote">Idealised output; real circuits clip and distort.</p></div>
+</div><div class="stats">
+<div class="stat"><p>Estimated output power</p><strong id="pout">—</strong></div><div class="stat"><p>Estimated DC input power</p><strong id="pin">—</strong></div><div class="stat"><p>Idealised efficiency</p><strong id="eff">—</strong></div><div class="stat"><p>Output RMS voltage</p><strong id="vout">—</strong></div>
+</div><p class="note" id="modelNote">Model assumptions will be shown here.</p>
+</section>
+<section class="panel"><h2>How to reason about amplifier efficiency</h2><div class="notes">
+<article class="note"><h3>1. Output power</h3><p>For a sinusoidal voltage across a resistive load, first estimate RMS output voltage:</p><p class="mono">Vᵣₘₛ = Vₚₑₐₖ / √2</p><p>Then:</p><p class="mono">Pout = Vᵣₘₛ² / Rₗ</p></article>
+<article class="note"><h3>2. DC input power</h3><p>Use the DC supply voltage and the average current drawn from it:</p><p class="mono">Pdc = VCC × IDC(avg)</p><p>For real measurements, measure supply current under the same operating condition as the output-power measurement.</p></article>
+<article class="note"><h3>3. Efficiency</h3><p class="mono">η = (Pout / Pdc) × 100%</p><p>Efficiency compares useful AC output power with DC power drawn. The rest becomes heat and other losses. Never assume a theoretical maximum is the measured result.</p></article>
+<article class="note"><h3>4. Class A vs Class AB</h3><ul><li><strong>Class A:</strong> the active device conducts for the full 360° cycle. It is simple and can be linear, but its quiescent current causes continuous dissipation.</li><li><strong>Class AB:</strong> complementary devices share the waveform with a small bias so both conduct slightly around zero. This reduces crossover distortion compared with Class B, while usually improving efficiency over Class A.</li></ul></article>
+</div>
+<p class="warning" style="margin-top:16px"><strong>Important limitation:</strong> This is an educational visual model, not a transistor-level SPICE simulation or a verified amplifier design. Its efficiency figures are idealised estimates based on simplified assumptions. Actual efficiency depends on topology, bias current, device drops, signal level, clipping, thermal design, and power-supply losses. Do not build or connect hardware from this diagram alone.</p>
+</section>
+<p class="footer">Built as a learning aid for electronics study. For an actual lab, use a current-limited low-voltage supply, a suitable dummy load, and proper measurement procedures.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const mode=$("classMode"),supply=$("supply"),inputLevel=$("inputLevel"),load=$("load");
+let paused=false,phase=0,raf=0,last=0;
+function wavePath(amplitude,offset,clipping=false){let d="";for(let x=10;x<=410;x+=2){const angle=(x-10)/400*Math.PI*4+phase;let y=70-Math.sin(angle)*amplitude;if(clipping)y=Math.max(24,Math.min(116,y));d+=(x===10?"M":"L")+x.toFixed(1)+" "+y.toFixed(1)+" ";}return d}
+function fmt(n,u){return Number.isFinite(n)?n.toLocaleString(undefined,{maximumFractionDigits:3})+" "+u:"—"}
+function updateModel(){
+ const vcc=Math.min(48,Math.max(3,Number(supply.value)||12)),vin=Math.min(2,Math.max(.1,Number(inputLevel.value)||1)),rl=Math.max(1,Number(load.value)||8);
+ $("inputReadout").textContent=vin.toFixed(1);$("loadLabel").textContent=rl+" Ω";$("supplyLabel").textContent="+"+vcc+" V DC";
+ const isAB=mode.value==="AB";
+ $("stageLabel").textContent=isAB?"Class AB stage":"Class A stage";
+ $("biasLabel").textContent=isAB?"complementary bias":"biased on";
+ $("abStage").setAttribute("opacity",isAB?"1":"0");
+ $("currentNote").textContent=isAB?"Push-pull devices share opposite half-cycles; small overlap reduces crossover distortion.":"Single-ended device conducts through the full signal cycle, even at idle.";
+ const headroom=isAB?.38:.25;
+ const vPeak=Math.min(vin*2,vcc*headroom);
+ const vrms=vPeak/Math.sqrt(2),pout=vrms*vrms/rl;
+ // Idealised illustrative supply-current models, deliberately conservative and topology dependent.
+ const idleCurrent=isAB?.012:.06;
+ const pIdle=vcc*idleCurrent;
+ const pSignal=isAB?(2*vcc*vPeak/(Math.PI*rl)):(vcc*vPeak/(2*rl));
+ const pdc=Math.max(pout+pIdle,isAB?pSignal+pIdle:vcc*idleCurrent+pout*2.4);
+ const eff=pdc>0?Math.min(100,pout/pdc*100):0;
+ $("pout").textContent=fmt(pout,"W");$("pin").textContent=fmt(pdc,"W");$("eff").textContent=fmt(eff,"%");$("vout").textContent=fmt(vrms,"V RMS");
+ $("modelNote").textContent=isAB?"Illustrative Class AB estimate: complementary push-pull stage with small quiescent bias. The model assumes an ideal sinusoidal load voltage limited to 38% of the supply as a headroom allowance; DC current is approximated, not measured.":"Illustrative Class A estimate: single-ended stage with continuous quiescent current. The model assumes an ideal sinusoidal load voltage limited to 25% of the supply; DC current is approximated, not measured.";
+ $("waveNote").textContent=isAB?"Push-pull output: the two devices alternately source and sink current; idealised sine wave shown.":"Class A output: one device conducts through the whole cycle; idealised sine wave shown.";
+ $("outputWire").classList.toggle("orange",!isAB);
+}
+function render(t){if(!paused){phase+=.035;const amp=12+Number(inputLevel.value)*13;$("inputWave").setAttribute("d",wavePath(amp,70));$("outputWave").setAttribute("d",wavePath(Math.min(48,Number(supply.value)*.38)*1.6,70,true));const d=phase%(Math.PI*4)/(Math.PI*4);$("flowDot").setAttribute("cx",String(427+d*73));$("flowDot").setAttribute("cy",String(90+d*66));}raf=requestAnimationFrame(render)}
+[mode,supply,inputLevel,load].forEach(el=>el.addEventListener("input",updateModel));
+$("run").addEventListener("click",()=>{paused=!paused;$("run").textContent=paused?"Resume animation":"Pause animation";$("status").textContent=paused?"Animation paused · values still adjustable":"Signal running · conceptual model"});
+$("reset").addEventListener("click",()=>{mode.value="A";supply.value="12";inputLevel.value="1";load.value="8";paused=false;$("run").textContent="Pause animation";$("status").textContent="Signal running · conceptual model";updateModel()});
+updateModel();$("inputWave").setAttribute("d",wavePath(25,70));$("outputWave").setAttribute("d",wavePath(32,70));raf=requestAnimationFrame(render);
+</script></body></html>
