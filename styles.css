@@ -340,3 +340,15 @@ h1{font-size:clamp(3rem,5.2vw,5.6rem)}
  .projects-grid{grid-template-columns:1fr}
  .intro-section,.skills-section,.projects-section,.approach-section,.contact-section{padding-top:52px;padding-bottom:56px}
 }
+
+/* Motion stability patch: use compositor-friendly transforms and prevent stacked effects */
+.project-card,.skill-card{transition:transform .22s ease,border-color .22s ease!important;will-change:auto}
+.project-card:hover,.skill-card:hover{transform:translate3d(0,-3px,0)!important}
+.project-card,.skill-card{transform-style:flat!important}
+.project-card .project-art::after{pointer-events:none}
+.reveal{transition:opacity .38s ease,transform .38s ease!important;transition-delay:0ms!important}
+.reveal:not(.is-visible){transform:translate3d(0,10px,0)}
+.site-nav a,.nav-letter{animation:none!important;transition:color .18s ease!important}
+.button,.header-cta,.project-link{isolation:isolate}
+.button-ripple{pointer-events:none;animation-duration:.45s!important}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}.project-card,.skill-card,.button,.header-cta,.project-link{transition:none!important}}
