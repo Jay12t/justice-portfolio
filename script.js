@@ -80,3 +80,20 @@ if ("IntersectionObserver" in window) {
   }, { rootMargin: "-25% 0px -60% 0px" });
   observedSections.forEach((section) => navObserver.observe(section));
 }
+
+  
+// Realistic click feedback: a soft ripple begins exactly where the user presses.
+document.querySelectorAll(".button, .header-cta, .project-link").forEach((button) => {
+  button.addEventListener("pointerdown", (event) => {
+    if (reduceMotion || event.button !== 0) return;
+    const rect = button.getBoundingClientRect();
+    const ripple = document.createElement("span");
+    ripple.className = "button-ripple";
+    ripple.setAttribute("aria-hidden", "true");
+    ripple.style.left = `${event.clientX - rect.left}px`;
+    ripple.style.top = `${event.clientY - rect.top}px`;
+    button.querySelectorAll(".button-ripple").forEach((oldRipple) => oldRipple.remove());
+    button.appendChild(ripple);
+    ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+  });
+});

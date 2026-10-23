@@ -54,3 +54,85 @@ body{background-image:radial-gradient(520px circle at var(--pointer-x) var(--poi
 @keyframes statusPulse{0%,100%{box-shadow:0 0 8px rgba(141,224,192,.3)}50%{box-shadow:0 0 18px rgba(141,224,192,.85)}}
 @media(max-width:650px){.telemetry{left:5%;bottom:5%;font-size:.5rem}.chip{animation:none}.hero-visual::before{animation-duration:10s}}
 @media(prefers-reduced-motion:reduce){body{background-image:none}.visual-grid,.chip,.hero-visual::before,.circuit,.visual-tag,.telemetry-pulse,.status-dot{animation:none!important}.project-art::after{display:none}.skill-card,.project-card{will-change:auto}.scroll-progress{display:none}}
+
+
+/* Tactile, more physical button interactions */
+.button,.header-cta,.project-link{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  transform:translateZ(0);
+  -webkit-tap-highlight-color:transparent;
+}
+.button,.header-cta{
+  box-shadow:0 2px 0 rgba(0,0,0,.28),0 7px 18px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.09);
+  transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s ease,background-color .18s ease,border-color .18s ease;
+}
+.button::before,.header-cta::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.19) 42%,rgba(255,255,255,.025) 52%,transparent 76%);
+  transform:translateX(-130%);
+  transition:transform .55s cubic-bezier(.2,.65,.25,1);
+}
+.button:hover::before,.header-cta:hover::before{transform:translateX(130%)}
+.button-primary{
+  background:linear-gradient(180deg,#a5f0d2 0%,#8de0c0 52%,#70c9a8 100%);
+  border-color:rgba(207,255,236,.45);
+  box-shadow:0 3px 0 #3d8d72,0 7px 16px rgba(0,0,0,.22),0 0 0 1px rgba(141,224,192,.12),inset 0 1px 0 rgba(255,255,255,.52);
+  text-shadow:0 1px 0 rgba(255,255,255,.16);
+}
+.button-primary:hover{
+  background:linear-gradient(180deg,#b7f8df 0%,#9cebcf 55%,#80d8b8 100%);
+  transform:translateY(-2px);
+  box-shadow:0 5px 0 #3d8d72,0 12px 24px rgba(0,0,0,.25),0 0 22px rgba(141,224,192,.12),inset 0 1px 0 rgba(255,255,255,.6);
+}
+.button-primary:active{
+  transform:translateY(2px) scale(.985);
+  box-shadow:0 1px 0 #3d8d72,0 3px 8px rgba(0,0,0,.2),inset 0 2px 5px rgba(16,50,39,.15);
+}
+.button-quiet,.button-outline,.header-cta{
+  background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.018));
+  border-color:rgba(199,218,235,.2);
+  box-shadow:0 2px 0 rgba(0,0,0,.25),0 6px 14px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.button-quiet:hover,.button-outline:hover,.header-cta:hover{
+  transform:translateY(-2px);
+  border-color:rgba(141,224,192,.52);
+  background:linear-gradient(180deg,rgba(141,224,192,.1),rgba(255,255,255,.025));
+  box-shadow:0 4px 0 rgba(0,0,0,.2),0 10px 20px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.12);
+}
+.button-quiet:active,.button-outline:active,.header-cta:active{
+  transform:translateY(1px) scale(.99);
+  box-shadow:0 1px 0 rgba(0,0,0,.25),inset 0 2px 5px rgba(0,0,0,.18);
+}
+.button:focus-visible,.header-cta:focus-visible,.project-link:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+  box-shadow:0 0 0 5px rgba(141,224,192,.12),0 7px 18px rgba(0,0,0,.15);
+}
+.button-ripple{
+  position:absolute;
+  z-index:0;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  pointer-events:none;
+  background:rgba(255,255,255,.38);
+  transform:translate(-50%,-50%) scale(0);
+  animation:buttonRipple .58s ease-out forwards;
+}
+.button>*{position:relative;z-index:1}
+.project-link{transition:color .2s,padding-left .2s,background-color .2s}
+.project-link:hover{padding-left:5px;color:var(--accent)}
+.project-link:active{background:rgba(141,224,192,.045)}
+@keyframes buttonRipple{
+  to{transform:translate(-50%,-50%) scale(20);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .button,.header-cta,.project-link,.button::before,.header-cta::before{transition:none!important}
+  .button-ripple{display:none}
+}
