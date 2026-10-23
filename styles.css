@@ -302,3 +302,41 @@ h1 span,h2 span{color:var(--blue)}
  .site-header .contact-dropdown .header-cta.contact-trigger{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;max-height:46px!important}
  .site-header .contact-dropdown .header-cta.contact-trigger .cta-label{font-size:.42rem!important}
 }
+
+/* Wider, more immersive desktop composition: reduce the boxed-in centered feel */
+:root{--max:1480px}
+.section-wrap{width:min(calc(100% - 80px),var(--max));margin-inline:auto}
+.site-header{padding-left:max(40px,calc((100vw - var(--max))/2));padding-right:max(40px,calc((100vw - var(--max))/2))}
+.hero{grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr);gap:clamp(48px,6vw,100px);min-height:min(760px,calc(100svh - 80px));padding-top:clamp(60px,7vh,100px);padding-bottom:clamp(60px,7vh,100px)}
+.hero-copy{max-width:780px}
+h1{font-size:clamp(3rem,5.2vw,5.6rem)}
+.hero-lede{max-width:680px;font-size:1.05rem}
+.hero-visual{width:100%;min-height:clamp(440px,42vw,600px);border-radius:32px}
+.chip{width:min(74%,390px);min-height:320px;padding:32px}
+.chip strong{font-size:2.2rem}
+.intro-section,.skills-section,.projects-section,.approach-section,.contact-section{padding-top:clamp(72px,7vw,110px);padding-bottom:clamp(72px,7vw,110px)}
+.skills-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.projects-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.project-art{min-height:230px}
+@media(min-width:1600px){.hero{grid-template-columns:minmax(0,1.1fr) minmax(520px,.9fr)}.hero-visual{min-height:620px}}
+@media(max-width:1100px){
+ :root{--max:100%}
+ .section-wrap{width:calc(100% - 48px)}
+ .site-header{padding-left:24px;padding-right:24px}
+ .hero{grid-template-columns:minmax(0,1fr) minmax(340px,.9fr);gap:32px;min-height:580px}
+ .hero-visual{min-height:390px}
+ .chip{width:78%;min-height:260px;padding:22px}
+ .chip strong{font-size:1.8rem}
+}
+@media(max-width:650px){
+ .section-wrap{width:calc(100% - 32px)}
+ .site-header{padding:12px 16px}
+ .hero{grid-template-columns:1fr;gap:32px;padding-top:48px;padding-bottom:52px;min-height:0}
+ h1{font-size:clamp(2.55rem,10vw,4rem)}
+ .hero-visual{min-height:340px;border-radius:22px}
+ .chip{width:min(76%,330px);min-height:250px;padding:22px}
+ .chip strong{font-size:1.75rem}
+ .skills-grid{grid-template-columns:1fr 1fr}
+ .projects-grid{grid-template-columns:1fr}
+ .intro-section,.skills-section,.projects-section,.approach-section,.contact-section{padding-top:52px;padding-bottom:56px}
+}
