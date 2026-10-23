@@ -26,19 +26,20 @@
 <p class="status" id="status">Signal running · conceptual model</p>
 <div class="legend"><span><i class="swatch" style="background:var(--orange)"></i> Input / positive rail</span><span><i class="swatch" style="background:var(--green)"></i> Output / conventional current path</span><span><i class="swatch" style="background:var(--red)"></i> Complementary device</span></div>
 <h2>Current path & simplified circuit</h2>
-<svg class="diagram" viewBox="0 0 760 320" role="img" aria-label="Conceptual amplifier circuit with supply, input, output stage, load and animated conventional current paths">
-<defs><marker id="arrowGreen" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#83dfa0"/></marker><marker id="arrowOrange" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#ff963d"/></marker></defs>
-<path class="wire orange" d="M65 90H160" marker-end="url(#arrowOrange)"/><rect class="part" x="160" y="68" width="95" height="44" rx="7"/><text class="part-text" x="207" y="86" text-anchor="middle">INPUT</text><text class="small-text" x="207" y="101" text-anchor="middle">signal source</text>
-<path class="wire" d="M255 90H302"/><rect class="part" x="302" y="63" width="125" height="54" rx="8"/><text class="part-text" x="364" y="85" text-anchor="middle" id="stageLabel">Class A stage</text><text class="small-text" x="364" y="101" text-anchor="middle" id="biasLabel">biased on</text>
-<path class="wire active" id="inputWire" d="M65 90H160M255 90H302"/><text class="small-text" x="65" y="71">INPUT</text>
-<path class="wire" d="M427 90H500V156H552" marker-end="url(#arrowGreen)"/><path class="wire active" id="outputWire" d="M427 90H500V156H552"/>
-<rect class="part" x="552" y="130" width="100" height="52" rx="7"/><text class="part-text" x="602" y="151" text-anchor="middle">LOAD</text><text class="small-text" x="602" y="167" text-anchor="middle" id="loadLabel">8 Ω</text>
-<path class="wire" d="M602 182V240H364V117"/><path class="wire active" id="returnWire" d="M602 182V240H364V117"/>
-<rect class="part" x="320" y="250" width="88" height="38" rx="7"/><text class="part-text" x="364" y="273" text-anchor="middle" id="supplyLabel">+12 V DC</text>
-<path class="wire" d="M364 250V240"/><text class="small-text" x="65" y="136" id="currentNote">Single-ended stage: current flows through the active device and load.</text>
-<g id="abStage" opacity="0"><rect class="part" x="305" y="133" width="118" height="32" rx="6"/><text class="part-text" x="364" y="153" text-anchor="middle">NPN / upper</text><rect class="part" x="305" y="178" width="118" height="32" rx="6"/><text class="part-text" x="364" y="198" text-anchor="middle">PNP / lower</text><path class="wire active" d="M364 133V117M364 210V240"/></g>
-<circle class="flow-dot" id="flowDot" cx="470" cy="90" r="5"/>
-<text class="small-text" x="65" y="292">Conceptual signal/current path — not a build-ready schematic.</text>
+<svg class="diagram" viewBox="0 0 900 430" role="img" aria-label="Educational transistor amplifier schematic with input source, coupling capacitors, transistor stage, DC supply, bias and emitter resistors, output load, ground and animated current paths">
+<defs><marker id="arrG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#83dfa0"/></marker><marker id="arrO" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6z" fill="#ff963d"/></marker></defs>
+<path class="wire orange" d="M330 64H635"/><text class="part-text" x="480" y="45" text-anchor="middle">+VCC DC SUPPLY</text>
+<circle class="part" cx="72" cy="215" r="28"/><path class="signal" d="M52 215q10 -18 20 0t20 0"/><text class="small-text" x="72" y="260" text-anchor="middle">AC INPUT</text>
+<path class="wire orange" d="M100 215H143M143 195V235M153 195V235M153 215H210" marker-end="url(#arrO)"/><text class="small-text" x="148" y="182" text-anchor="middle">CIN</text>
+<path class="wire" d="M210 215H288"/><circle class="part" cx="330" cy="215" r="42"/><path class="wire" d="M300 215H330M330 185V245M330 195L353 175M330 235L353 255"/><path class="wire" d="M353 175V64M353 255V315"/><text class="part-text" x="330" y="285" text-anchor="middle" id="stageLabel">Q1 NPN</text><text class="small-text" x="330" y="301" text-anchor="middle" id="biasLabel">Class A · biased on</text>
+<path class="wire" d="M388 64V90L378 98L398 108L378 118L398 128L388 136V160H353"/><text class="small-text" x="410" y="118">RC</text>
+<path class="wire" d="M353 255V272L343 280L363 290L343 300L363 310L353 318V335H330M330 335V347M316 347H344M321 354H339M326 361H334"/><text class="small-text" x="377" y="299">RE</text><text class="small-text" x="350" y="380">GND</text>
+<path class="wire active" id="outputWire" d="M353 175H520"/><path class="wire" d="M520 175V155M510 155H530M510 165H530M520 165H602"/><text class="small-text" x="520" y="143" text-anchor="middle">COUT</text>
+<rect class="part" x="602" y="150" width="112" height="52" rx="8"/><text class="part-text" x="658" y="172" text-anchor="middle">LOAD</text><text class="small-text" x="658" y="188" text-anchor="middle" id="loadLabel">8 Ω speaker</text>
+<path class="wire" d="M658 202V265H341"/><path class="wire active" id="returnWire" d="M658 202V265H341"/><path class="wire active" id="inputWire" d="M105 215H210"/>
+<rect class="part" x="735" y="66" width="132" height="64" rx="8"/><text class="part-text" x="801" y="88" text-anchor="middle">POWER SOURCE</text><text class="small-text" x="801" y="105" text-anchor="middle" id="supplyLabel">+12 V DC</text><text class="small-text" x="801" y="119" text-anchor="middle">DC input</text><path class="wire orange" d="M735 98H635"/>
+<circle class="flow-dot" id="flowDot" cx="420" cy="175" r="5"/><text class="small-text" x="72" y="310">INPUT SIGNAL · small AC signal</text><text class="small-text" x="470" y="390" text-anchor="middle" id="currentNote">Class A: Q1 conducts throughout the full 360° signal cycle.</text><text class="small-text" x="450" y="414" text-anchor="middle">Illustrative schematic · component values omitted · not a build-ready design</text>
+<g id="abStage" opacity="0"><rect class="part" x="470" y="222" width="125" height="36" rx="7"/><text class="part-text" x="532" y="244" text-anchor="middle">Q2 NPN upper</text><rect class="part" x="470" y="272" width="125" height="36" rx="7"/><text class="part-text" x="532" y="294" text-anchor="middle">Q3 PNP lower</text><path class="wire active" d="M532 222V175M532 308V335"/><text class="small-text" x="615" y="244">Push-pull output</text></g>
 </svg>
 </section>
 <section class="panel"><h2>Input vs output signal</h2><div class="plots">
