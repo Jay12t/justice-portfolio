@@ -236,3 +236,20 @@ h1 span,h2 span{color:var(--blue)}
  .contact-trigger,.liquid-orb,.contact-menu,.contact-menu-item,.site-nav a,.nav-letter{animation:none!important;transition:none!important}
  .contact-trigger .liquid-orb{display:none}
 }
+
+
+/* Make the liquid contact control a true circle, not a pill */
+.header-cta.contact-trigger{
+  width:104px;height:104px;min-width:104px;min-height:104px;padding:12px;
+  border-radius:50%;gap:3px;flex-direction:column;
+  box-shadow:0 5px 0 #050706,0 13px 28px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.contact-trigger .cta-label{max-width:70px;text-align:center;line-height:1.12;font-size:.8rem;white-space:normal}
+.contact-trigger .cta-arrow{font-size:1rem;line-height:1}
+.liquid-orb{width:14px;height:14px}
+.contact-trigger:hover .liquid-orb,.contact-trigger:focus-visible .liquid-orb,.contact-dropdown.is-open .liquid-orb{transform:translate(-50%,-50%) scale(8.5)}
+.contact-menu{top:calc(100% + 10px)}
+.site-header{align-items:center}
+.projects-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:900px){.site-header{gap:12px}.site-nav{gap:14px}.header-cta.contact-trigger{width:88px;height:88px;min-width:88px;min-height:88px}.contact-trigger .cta-label{font-size:.72rem}}
+@media(max-width:650px){.site-header{align-items:center}.contact-dropdown{margin-left:auto}.header-cta.contact-trigger{width:76px;height:76px;min-width:76px;min-height:76px}.contact-trigger .cta-label{font-size:.67rem}.site-nav{order:3}.projects-grid{grid-template-columns:1fr}}
